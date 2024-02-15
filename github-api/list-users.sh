@@ -26,7 +26,7 @@ function list_users_with_read_access {
 
     # Fetch the list of collaborators on the repository
     collaborators="$(github_api_get "$endpoint" | jq -r '.[] | select(.permissions.pull == true) | .login')"
-
+    #instead of printing all the information in JSON format we use jq to print necessary info from JSON payload.
     # Display the list of collaborators with read access
     if [[ -z "$collaborators" ]]; then
         echo "No users with read access found for ${REPO_OWNER}/${REPO_NAME}."
